@@ -1,4 +1,5 @@
 .buildpath
+wp/.htacess
 .project
 .settings/
 wp/wp-admin
