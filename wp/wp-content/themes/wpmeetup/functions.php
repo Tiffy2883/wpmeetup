@@ -24,9 +24,24 @@ if ( ! class_exists( 'wpmeetup_theme' ) ) {
 		}
 			
 		public function __construct() {
+			
+			// Google Map
+			add_filter( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
+			
+			// Login Style
 			add_filter( 'login_headerurl', array( $this, 'style_login' ) );
 			add_filter( 'login_headertitle', array( $this, 'style_login' ) );
 			add_filter( 'login_head', array( $this, 'style_login' ) );
+		}
+		
+		public function wp_enqueue_scripts() {
+			wp_enqueue_script( 'google_map_api', 'http://maps.google.com/maps/api/js?sensor=true', array( 'jquery' ) );
+			wp_enqueue_script( 'google_map_switcher', get_bloginfo( 'template_url' ) . '/js/switcher.js' );
+			wp_localize_script( 'google_map_switcher', 'switcher_vars', $this->load_js_vars() );
+		}
+		
+		public function load_js_vars () {
+			return array( 'template_dir' => get_bloginfo( 'template_url' ) );
 		}
 		
 		public function  style_login() {

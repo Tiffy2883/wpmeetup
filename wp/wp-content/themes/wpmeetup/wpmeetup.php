@@ -10,7 +10,7 @@
 			<h2 class="box"><?php the_title(); ?></h2>
 			<div class="inside">
 
-				Google Map
+				<p id="single_map"></p>
 
 			</div>
 			<div class="bottom"></div>

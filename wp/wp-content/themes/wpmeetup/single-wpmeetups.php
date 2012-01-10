@@ -18,7 +18,13 @@
 						</a>
 					<?php endif; ?>
 					statt:</p>
-				<p>Google Map</p>
+				<p id="single_map" data-geo-lat="<?php echo $meetup_data[ 'latitude' ]; ?>" data-geo-long="<?php echo $meetup_data[ 'longtitude' ]; ?>"></p>
+				<p>
+					<strong>Die genaue Adresse:</strong><br />
+					<?php echo $meetup_data[ 'location' ]; ?><br />
+					<?php echo $meetup_data[ 'street' ]; ?> <?php echo $meetup_data[ 'number' ]; ?><br />
+					<?php echo $meetup_data[ 'plz' ]; ?> <?php echo $meetup_data[ 'town' ]; ?>
+				</p>
 
 			</div>
 			<div class="bottom"></div>

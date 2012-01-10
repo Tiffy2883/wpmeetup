@@ -336,8 +336,8 @@ if ( ! class_exists( 'Wpmeetup' ) ) {
 								$lng = $coordinatesSplit[0];
 								
 								$meetup_data = get_post_meta( get_the_ID(), 'meetup', TRUE );
-								$meetup_data[ 'longitude' ] = $lng;
 								$meetup_data[ 'latitude' ] = $lat;
+								$meetup_data[ 'longitude' ] = $lng;
 								update_post_meta( get_the_ID(), 'meetup', $meetup_data );
 								
 								update_post_meta( get_the_ID(), 'meetup_lat', $lat );
