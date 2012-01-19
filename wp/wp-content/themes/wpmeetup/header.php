@@ -16,7 +16,7 @@
 				<a href="<?php bloginfo( 'home' ); ?>"><img src="<?php bloginfo( 'template_url' ); ?>/images/orwell.png" class="logo" /></a>
 
 				<?php wp_nav_menu( array( 'theme_location' => 'nav_header' ) ); ?>
-				<?php wp_nav_menu( array( 'theme_location' => 'link_here' ) ); ?>
+				<?php #wp_nav_menu( array( 'theme_location' => 'link_here' ) ); ?>
 				
 			</div>
 			

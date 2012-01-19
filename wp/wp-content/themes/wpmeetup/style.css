@@ -229,7 +229,8 @@ div#header ul.menu li a {
 div#header ul.menu li a:hover,
 div#header ul.menu li.current-menu-item a:hover,
 .button-primary,
-input#submit {
+input#submit,
+input[type='submit'] {
 	cursor: pointer;
 	
 	color: #fff;
@@ -258,7 +259,8 @@ input#submit {
 
 div#header ul.menu li.current-menu-item a,
 .button-primary:hover,
-input#submit:hover {
+input#submit:hover,
+input[type='submit']:hover {
 	color: #fff;
 	font-weight: bold;
 	padding: 5px 10px;
