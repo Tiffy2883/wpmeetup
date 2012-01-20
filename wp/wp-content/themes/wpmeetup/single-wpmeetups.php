@@ -18,7 +18,7 @@
 						</a>
 					<?php endif; ?>
 					statt:</p>
-				<p id="single_map" data-geo-lat="<?php echo $meetup_data[ 'latitude' ]; ?>" data-geo-long="<?php echo $meetup_data[ 'longtitude' ]; ?>"></p>
+				<p id="single_map" data-geo-lat="<?php echo $meetup_data[ 'latitude' ]; ?>" data-geo-lng="<?php echo $meetup_data[ 'longitude' ]; ?>"></p>
 				<p>
 					<strong>Die genaue Adresse:</strong><br />
 					<?php echo $meetup_data[ 'location' ]; ?><br />
