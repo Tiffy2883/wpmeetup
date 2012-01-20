@@ -27,11 +27,21 @@ jQuery.noConflict();
 				var marker_point = new google.maps.LatLng( lat, lng );
 				map.panTo( marker_point );
 				
-				var current_marker = new google.maps.Marker( {
+				$("#marker_address").hide();
+				var infowindow = new google.maps.InfoWindow({
+			        content: $("#marker_address").html()
+			    });
+				
+				var marker = new google.maps.Marker( {
 					position: marker_point,
 					map: map,
-					icon: switcher_vars.template_dir + '/images/pin.png'
+					icon: switcher_vars.template_dir + '/images/pin.png',
+					title: "Hello World"
 				} );
+				
+				google.maps.event.addListener(marker, 'click', function() {
+			      infowindow.open( map, marker );
+			    } );
 			}
 		},
 	};

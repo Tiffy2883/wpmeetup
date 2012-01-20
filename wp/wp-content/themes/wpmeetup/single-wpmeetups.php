@@ -19,12 +19,11 @@
 					<?php endif; ?>
 					statt:</p>
 				<p id="single_map" data-geo-lat="<?php echo $meetup_data[ 'latitude' ]; ?>" data-geo-lng="<?php echo $meetup_data[ 'longitude' ]; ?>"></p>
-				<p>
-					<strong>Die genaue Adresse:</strong><br />
+				<div id="marker_address">
 					<?php echo $meetup_data[ 'location' ]; ?><br />
 					<?php echo $meetup_data[ 'street' ]; ?> <?php echo $meetup_data[ 'number' ]; ?><br />
 					<?php echo $meetup_data[ 'plz' ]; ?> <?php echo $meetup_data[ 'town' ]; ?>
-				</p>
+				</div>
 
 			</div>
 			<div class="bottom"></div>
