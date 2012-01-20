@@ -92,7 +92,7 @@ input.error {
    	background-color: #cfe7d3 !important;
 }
 
-#single_map, #map {
+#map {
 	width: 662px;
 	padding: 10px;
 	height: 525px;

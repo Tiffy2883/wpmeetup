@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 
-	
 	<div id="main">
 
 		<?php $meetup_data = get_post_meta( get_the_ID(), 'meetup', TRUE ); ?>
@@ -18,11 +17,10 @@
 						</a>
 					<?php endif; ?>
 					statt:</p>
-				<p id="single_map" data-geo-lat="<?php echo $meetup_data[ 'latitude' ]; ?>" data-geo-lng="<?php echo $meetup_data[ 'longitude' ]; ?>"></p>
-				<div id="marker_address">
-					<?php echo $meetup_data[ 'location' ]; ?><br />
-					<?php echo $meetup_data[ 'street' ]; ?> <?php echo $meetup_data[ 'number' ]; ?><br />
-					<?php echo $meetup_data[ 'plz' ]; ?> <?php echo $meetup_data[ 'town' ]; ?>
+
+				<div id="map"></div>
+				<div id="map_data">
+					<?php wpm_the_event( get_the_ID() ) ?>
 				</div>
 
 			</div>
