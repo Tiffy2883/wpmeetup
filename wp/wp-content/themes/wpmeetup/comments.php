@@ -3,7 +3,7 @@
 			<h2 class="box">Ich werde kommen!</h2>
 			<div class="inside">
 				<p>Wenn du wei&szlig;t, dass du kommst, dann trag dich einfach mit deinen Namen hier ein. So k&ouml;nnen wir auch besser planen und zur Not eine gr&ouml;&szlig;ere Location suchen. Vielleicht kannst du hier auch gleich ein Thema ank&uuml;ndigen, &uuml;ber welches du gerne sprechen willst.</p>
-				<form action="http://localhost/wpmeetup/wp/wp-comments-post.php" method="post" id="commentform">
+				<form action="<?php bloginfo( 'url' ); ?>/wp-comments-post.php" method="post" id="commentform">
 
 					<?php if ( is_user_logged_in() ) : ?>
 						<?php $userdata = get_userdata( get_current_user_id() ); ?>
