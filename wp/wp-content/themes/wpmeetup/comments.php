@@ -5,14 +5,21 @@
 				<p>Wenn du wei&szlig;t, dass du kommst, dann trag dich einfach mit deinen Namen hier ein. So k&ouml;nnen wir auch besser planen und zur Not eine gr&ouml;&szlig;ere Location suchen. Vielleicht kannst du hier auch gleich ein Thema ank&uuml;ndigen, &uuml;ber welches du gerne sprechen willst.</p>
 				<form action="http://localhost/wpmeetup/wp/wp-comments-post.php" method="post" id="commentform">
 
-					<p><input type="text" name="author" id="author" value="Thomas" size="22" tabindex="1" aria-required="true">
+					<?php if ( is_user_logged_in() ) : ?>
+						<?php $userdata = get_userdata( get_current_user_id() ); ?>
+						<input type="hidden" name="author" id="author" value="<?php echo $userdata->data->user_nicename; ?>" size="22" tabindex="1" aria-required="true" />
+						<input type="hidden" name="email" id="email" value="<?php echo $userdata->data->user_email; ?>" size="22" tabindex="2" aria-required="true" />
+						<input type="hidden" name="url" id="url" value="<?php echo $userdata->data->user_url; ?>" size="22" tabindex="3" />
+					<?php else : ?>
+					<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required="true" />
 					<label for="author"><small>Name (wird gebraucht)</small></label></p>
 					
-					<p><input type="text" name="email" id="email" value="t.herzog@inpsyde.com" size="22" tabindex="2" aria-required="true">
+					<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required="true" />
 					<label for="email"><small>Mail (wird nicht ver&ouml;ffentlich, aber gebraucht)</small></label></p>
 					
 					<p><input type="text" name="url" id="url" value="" size="22" tabindex="3">
 					<label for="url"><small>Webseite</small></label></p>
+					<?php endif; ?>
 					
 					<p><textarea name="comment" id="comment" cols="58" rows="10" tabindex="4"></textarea></p>
 					
