@@ -1,0 +1,296 @@
+/*
+Theme Name: WPMeetup V2
+Theme URI: http://wpmeetup.de/
+Description: WPMeetup Theme
+Version: 0.2
+Author: Inpsyde GmbH
+Author URI: http://inpsyde.com/
+*/
+/*
+----------------> CSS-RESET <--------------------
+*/
+* { margin: 0; padding: 0; }
+html { overflow-y:scroll; }
+html, body { height: 100%; background-color:#fff; }
+body { font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size:14px; font-weight:normal; color:#333; height: 100%; }
+ul { list-style: none; }
+ol { list-style: none; width:250px; }
+a { outline: none; text-decoration: none; color:#0292c5; }
+a:hover {color:#cb9d00; }
+a img { border: none; background: none; }
+img { vertical-align: middle; outline:none; }
+table { border-collapse: collapse; }
+
+/*
+----------------> Allgemeine Formatierungen <--------------------
+*/
+
+.container0 { float:left; width:100%; height:120px; background-color:#fff; background-image:url(images/bordertop.png); background-repeat:repeat-x; background-position:top center; }
+.container00 { margin: 0 auto; width:1040px; height:120px; position:relative; }
+
+.container1 { float:left; width:100%; height:300px; background-image:url(images/hgbanner.jpg); }
+.container11 { margin: 0 auto; width:1040px; height:300px; position:relative; }
+
+.container2 { float:left; width:100%; height:auto; background-color:#fff; }
+.container22 { margin: 0 auto; width:1040px; height: auto; position:relative; }
+
+.container3 { float:left; width:100%; height:300px; background-image:url(images/hgfooter.jpg); }
+.container33 { margin: 0 auto; width:1040px; height:300px; background-image:url(images/footercenter.jpg); background-position:top center; background-repeat:no-repeat; }
+
+h1{ font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size:20px; font-weight:normal; color:#333; margin-bottom:10px; }
+h2{ font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size:18px; font-weight:normal; color:#333; margin-bottom:10px; }
+h3{ font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size:16px; font-weight:normal; color:#333; margin-bottom:10px; }
+h4{ font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size:14px; font-weight:normal; color:#333; margin-bottom:10px; }
+h5{ font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size:12px; font-weight:normal; color:#333; margin-bottom:10px; }
+h6{ font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size:10px; font-weight:normal; color:#333; margin-bottom:10px; }
+ 
+p { line-height: 1.6em; margin: 0 0 10px 0; }
+span.clear { display: block; height: 0; clear: both; visibility: hidden; }
+span.line { float:left; height:1px; width:1000px; margin-bottom:35px; margin-top:35px; border-bottom:1px dotted #ccc; }
+
+.shadowtop { position:absolute; left:20px; top:0px; width:1000px; height:4px; background-image:url(images/shadowtop.png); background-position:top center; background-repeat:no-repeat; }
+.shadowbottom { position:absolute; left:20px; bottom:0px; width:1000px; height:4px; background-image:url(images/shadowbottom.png); background-position:top center; background-repeat:no-repeat; }
+
+/*
+----------------> Header <--------------------
+*/
+.logo { position:absolute; left:20px; top:10px; width:250px; height:100px; background-image:url(images/logo.png); background-repeat:no-repeat; }
+.logo:hover { cursor:pointer; }
+.mainmenu { position:absolute; top:0px; right:20px; width:auto; font-size:14px; }
+.mainmenu ul { }
+.mainmenu li { float:left; }
+.mainmenu li a{ float:left; padding:60px 20px 43px 20px; color:#666; }
+.mainmenu li.current_page_item a{ background-image:url(images/menupfeil.png); background-position:bottom center; background-repeat:no-repeat; padding:60px 20px 57px 20px; position:relative; z-index:999; color:#333; }
+.mainmenu li.current-page-ancestor a{ background-image:url(images/menupfeil.png); background-position:bottom center; background-repeat:no-repeat; padding:60px 20px 57px 20px; position:relative; z-index:999; color:#333; }
+.mainmenu li.menu-item-83 a{ background-image:url(images/hgnetwork.png); background-position:top center; background-repeat:no-repeat; color:#fff; }
+.banner { position:absolute; left:20px; top:0px; width:1000px; height:300px; }
+/*
+----------------> breadcrumb <--------------------
+*/
+#breadcrumb { float:left; width:1000px; margin:25px 0 0 0; padding:10px 20px 0 20px; font-size:12px; }
+#breadcrumb ul{  }
+#breadcrumb li{ float:left; margin-right:5px; }
+/*
+----------------> Content <--------------------
+*/
+.content { float:left; width:1000px; margin:25px 0 25px 0; padding:10px 20px 10px 20px; }
+.content h2{ font-size:25px; margin-bottom:20px; color:#0292c5; }
+.content h3{ font-size:18px; margin-bottom:10px; color:#0292c5; } /* added by Birgit */
+.content .page li{ line-height: 1.5em; padding-left:15px; background-image:url(images/licontent.png); background-position:0px 7px; background-repeat: no-repeat; margin-bottom:10px; }
+.content .type-modul li{ padding-left:15px; background-image:url(images/licontent.png); background-position:center left; background-repeat: no-repeat; margin-bottom:10px; }
+.content .left { float:left; width:500px; }
+.content .right { float:right; width:500px; }
+.content .gform_wrapper li { background:none; }
+/*
+----------------> Form <--------------------
+*/
+body .gform_wrapper .gform_body .gform_fields .gfield input[type=text],
+body .gform_wrapper .gform_body .gform_fields .gfield input[type=email],
+body .gform_wrapper .gform_body .gform_fields .gfield input[type=tel],
+body .gform_wrapper .gform_body .gform_fields .gfield input[type=url],
+body .gform_wrapper .gform_body .gform_fields .gfield input[type=number],
+body .gform_wrapper .gform_body .gform_fields .gfield input[type=password],
+body .gform_wrapper .gform_body .gform_fields .gfield select,
+body .gform_wrapper .gform_body .gform_fields .gfield textarea {
+	padding:5px; background:none; border:#eee 1px solid;
+}
+body .gform_wrapper .gform_body ul{ border-bottom:#eee dotted 1px; margin-bottom:25px; padding-bottom:25px; }
+input.gform_button { width:120px; cursor: pointer; text-align: center; text-decoration: none; font-size:14px; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; padding:5px; box-shadow: 0 1px 2px rgba(0,0,0,.2); margin-top:10px; color: #fff;
+	background: #3ab8d8;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3ab8d8), to(#019ec5));
+	background: -moz-linear-gradient(top,  #3ab8d8,  #019ec5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#3ab8d8', endColorstr='#019ec5');
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border:none;
+}
+/*
+----------------> startseite <--------------------
+*/
+.contentstart { float:left; height:auto; width:1000px; margin:50px 0 50px 0; padding:0 20px 0 20px; }
+.contentstart .box{ float:left; width:300px; height:auto; margin-right:50px; }
+.post-264 .box, .post-276 .box,.post-66 .box{height:195px; position:relative;}/*Der Lars war's*/
+.post-264 .box .more-link, .post-276 .box .more-link,.post-66 .box .more-link{position:absolute; bottom:0}/*...und gleich nochmal*/
+.contentstart .box h2 a{ font-size:18px; color:#0292c5; }
+.contentstart .box p.more-link{ padding-left:25px; background-image:url(images/more-link.png); background-repeat:no-repeat; background-position:left center; margin-top:25px; }
+
+.contentstart .post-264 .box h2 a{ float:left; background-image:url(images/iconbubble.png); background-repeat:no-repeat; width:250px; height:31px; line-height:31px; padding-left:50px; padding-bottom:15px; }
+.contentstart .post-276 .box h2 a{ float:left; background-image:url(images/iconbubble2.png); background-repeat:no-repeat; width:250px; height:31px; line-height:31px; padding-left:50px; padding-bottom:15px; }
+.contentstart .post-66 .box h2 a{ float:left; background-image:url(images/iconpen.png); background-repeat:no-repeat; width:250px; height:31px; line-height:31px; padding-left:50px; padding-bottom:15px; }
+
+.contentstart .mapbox { float:left; width:600px; }
+.contentstart .mapbox h2 a{ font-size:18px; color:#0292c5; }
+.contentstart .mapbox #map{ margin-top:15px; margin-bottom:15px; }
+.contentstart .box.right{ float:right; width:300px; height:auto; margin-right:0px; }
+.contentstart .box.right p{ padding-bottom:0px; margin-bottom:5px; }
+.contentstart .box.right ul{ margin-bottom:10px; }
+.contentstart .box.right li{ padding-left:15px; background-image:url(images/licontent.png); background-position:center left; background-repeat: no-repeat; }
+.contentstart .box.right p.more-link{ margin-top:15px; }
+.contentstart .box.right h2 { font-size:18px; color:#0292c5; }
+
+
+table { margin-top:15px; margin-bottom:15px; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+table a{ color:#fff; }
+tr { border-bottom:1px #eee dotted; }
+td { padding:20px 10px 20px 10px; }
+td.date { border-left:#eee 1px dotted; padding-left:25px; }
+tr.ub td.date { border-left:none; padding-left:25px; }
+tr.ub { background-image:url(images/hgtable2.png); font-size:16px; }
+p.button { float:right; width:120px; cursor: pointer; text-align: center; text-decoration: none; font-size:14px; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; padding:5px; box-shadow: 0 1px 2px rgba(0,0,0,.2); margin-top:10px; color: #fff;
+	background: #3ab8d8;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3ab8d8), to(#019ec5));
+	background: -moz-linear-gradient(top,  #3ab8d8,  #019ec5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#3ab8d8', endColorstr='#019ec5');
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+p.button.left { float:left; width:120px; }
+p.button a { color:#fff; }
+p.button img { margin-bottom:2px; padding-left:5px; }
+
+/*
+----------------> module <--------------------
+*/
+.modulbox { float:left; width:100%; height:auto; margin-top:25px; margin-bottom:25px; box-shadow: 0 1px 2px rgba(0,0,0,.2); -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; background-image:url(images/hgtable1.png);
+	background: #fff;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f0f0f0));
+	background: -moz-linear-gradient(top,  #fff,  #f0f0f0);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#f0f0f0');
+ }
+.modulbox a{ color:#fff; }
+.modulbox .page { float:left; width:249px; height:auto; border-right:1px solid #eee; position:relative; }
+.modulbox .page .ub{ float:left; width:100%; position:relative; }
+.modulbox .page h2{ color:#666; font-size:18px; padding:20px 0 20px 0; border-bottom:1px solid #eee; text-align:center; width:100%; background-image:url(images/hgtable2.png); }
+.modulbox .page .pfeil { position:absolute; width:20px; height:20px; background-image:url(images/hgtable2pfeil.png); left:115px; top:60px; }
+.modulbox .page .pfeilbottom { position:absolute; width:20px; height:20px; background-image:url(images/hgtable1pfeil.png); left:115px; bottom:73px; z-index:999; } 
+.modulbox .page .list { float:left; padding-left:20px; padding-top:20px; }
+.modulbox .page .list li{ margin-bottom:10px; background-image:url(images/checkli.png); background-repeat:no-repeat; background-position:left center; padding-left:25px; }
+.modulbox .page .list li a{color: #0292c5; } /* added by Birgit 22.02.2012 11:50 */
+.modulbox .page .button { float:left; border-top:1px solid #eee; width:100%; background-image:url(images/hgtable1.png); float:left; margin-top:40px; }
+.modulbox .page .button p.buttoninner{ cursor: pointer; text-align: center; text-decoration: none; font-size:14px; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; padding:5px; box-shadow: 0 1px 2px rgba(0,0,0,.2); margin:30px 20px 30px 20px; color: #fff;
+	background: #3ab8d8;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3ab8d8), to(#019ec5));
+	background: -moz-linear-gradient(top,  #3ab8d8,  #019ec5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#3ab8d8', endColorstr='#019ec5');
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.modulbox .page .button p.buttoninner img{ padding-bottom:2px; padding-left:5px; }
+/*
+----------------> Modul 1&2 <--------------------
+*/
+.modulbox { float:left; width:100%; height:auto; margin-top:25px; margin-bottom:25px; box-shadow: 0 1px 2px rgba(0,0,0,.2); -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; background-image:url(images/hgtable1.png);
+	background: #fff;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f0f0f0));
+	background: -moz-linear-gradient(top,  #fff,  #f0f0f0);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#f0f0f0');
+ }
+.modulbox a{ color:#fff; }
+.modulbox .post-130.page { float:left; width:499px; height:auto; border-right:1px solid #eee; position:relative; }
+.modulbox .post-130.page .ub{ float:left; width:100%; position:relative; }
+.modulbox .post-130.page h2{ color:#666; font-size:18px; padding:20px 0 20px 0; border-bottom:1px solid #eee; text-align:center; width:100%; background-image:url(images/hgtable2.png); }
+.modulbox .post-130.page .pfeil { position:absolute; width:20px; height:20px; background-image:url(images/hgtable2pfeil.png); left:240px; top:60px; }
+.modulbox .post-130.page .pfeilbottom { position:absolute; width:20px; height:20px; background-image:url(images/hgtable1pfeil.png); left:240px; bottom:73px; z-index:999; } 
+.modulbox .post-130.page .list { float:left; padding-left:20px; padding-top:20px; }
+.modulbox .post-130.page .list ul.modul1{ float:left; width:240px; }
+.modulbox .post-130.page .list ul.modul2{ float:right; width:200px; }
+.modulbox .post-130.page .list li{ margin-bottom:10px; background-image:url(images/checkli.png); background-repeat:no-repeat; background-position:left center; padding-left:25px; }
+.modulbox .post-130.page .list li a{color: #0292c5; } /* added by Birgit 22.02.2012 11:50 */
+.modulbox .post-130.page .button { float:left; border-top:1px solid #eee; width:100%; background-image:url(images/hgtable1.png); float:left; margin-top:40px; }
+.modulbox .post-130.page .button p.buttoninner{ cursor: pointer; text-align: center; text-decoration: none; font-size:14px; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; padding:5px; box-shadow: 0 1px 2px rgba(0,0,0,.2); margin:30px 20px 30px 20px; color: #fff;
+	background: #3ab8d8;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3ab8d8), to(#019ec5));
+	background: -moz-linear-gradient(top,  #3ab8d8,  #019ec5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#3ab8d8', endColorstr='#019ec5');
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.modulbox .post-130.page .button p.buttoninner img{ padding-bottom:2px; padding-left:5px; }
+/*
+----------------> location <--------------------
+*/
+.locationbox { float:left; width:100%; height:auto; margin-top:25px; margin-bottom:25px; box-shadow: 0 1px 2px rgba(0,0,0,.2); -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; background-image:url(images/hgtable1.png);
+	background: #fff;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f0f0f0));
+	background: -moz-linear-gradient(top,  #fff,  #f0f0f0);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#f0f0f0');
+ }
+.locationbox a { color:#fff; }
+.locationbox .page { float:left; width:249px; height:auto; border-right:1px solid #eee; position:relative; }
+.locationbox .page .ub{ float:left; width:100%; position:relative; }
+.locationbox .page h2{ color:#666; font-size:18px; padding:20px 0 20px 0; border-bottom:1px solid #eee; text-align:center; width:100%; background-image:url(images/hgtable2.png); }
+.locationbox .page .pfeil { position:absolute; width:20px; height:20px; background-image:url(images/hgtable2pfeil.png); left:115px; top:60px; }
+.locationbox .page .pfeilbottom { position:absolute; width:20px; height:20px; background-image:url(images/hgtable1pfeil.png); left:115px; bottom:73px; z-index:999; } 
+.locationbox .page .list { float:left; padding-left:20px; padding-top:20px; }
+.locationbox .page .list li{ margin-bottom:10px; background-image:url(images/checkli.png); background-repeat:no-repeat; background-position:left center; padding-left:25px; }
+.locationbox .page .list li a{color: #0292c5; } /* added by Birgit 22.02.2012 11:50 */
+.locationbox .page .button { float:left; border-top:1px solid #eee; width:100%; background-image:url(images/hgtable1.png); float:left; margin-top:40px; }
+.locationbox .page .button p.buttoninner{ cursor: pointer; text-align: center; text-decoration: none; font-size:14px; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; padding:5px; box-shadow: 0 1px 2px rgba(0,0,0,.2); margin:30px 20px 30px 20px; color: #fff;
+	background: #3ab8d8;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3ab8d8), to(#019ec5));
+	background: -moz-linear-gradient(top,  #3ab8d8,  #019ec5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#3ab8d8', endColorstr='#019ec5');
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.locationbox .page .button p.buttoninner img{ padding-bottom:2px; padding-left:5px; }
+.locationbox .post-443, .locationbox .post-454, .locationbox .post-460, .locationbox .post-457{height:345px; position:relative}
+.locationbox .button{position:absolute; bottom:0}
+
+/*
+----------------> dozenten <--------------------
+*/
+.dozent { float:left; width:100%; height:auto; margin-bottom:25px; padding-bottom:25px; margin-top:10px; border-bottom:1px dotted #eee; }
+.dozent .dozentimage { float:left; width:200px; height:200px; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+.dozent .dozentimage img{ width:200px; height:200px; } 
+.dozent .info { float:right; width:700px; height:auto; }
+.dozent .info h2{ font-size:25px; margin-bottom:20px; color:#0292c5; }
+/*
+----------------> AGB Widerruf <--------------------
+*/
+.widerruf {  width:100%; height:auto; margin-top:25px; margin-bottom:25px; box-shadow: 0 1px 2px rgba(0,0,0,.2); -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; background-image:url(images/hgtable1.png);
+	background: #fff;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f0f0f0));
+	background: -moz-linear-gradient(top,  #fff,  #f0f0f0);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#f0f0f0');  }
+.widerruf h3{ color:#666; font-size:18px; padding:20px 0 20px 0; border-bottom:1px solid #eee; text-align:center; width:100%; background-image:url(images/hgtable2.png); }
+.widerruf p {padding: 15px; }
+/*
+----------------> checkpage <--------------------
+*/
+.gravity_check_page_div input.button{ border:none; cursor: pointer; text-align: center; text-decoration: none; font-size:14px; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; padding:5px 10px 5px 10px; box-shadow: 0 1px 2px rgba(0,0,0,.2); margin:30px 5px 0  0; color: #fff; background: #3ab8d8; background: -webkit-gradient(linear, left top, left bottom, from(#3ab8d8), to(#019ec5)); background: -moz-linear-gradient(top,  #3ab8d8,  #019ec5); filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#3ab8d8', endColorstr='#019ec5'); -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+.gravity_check_page_label { font-weight:bold; }
+
+/*
+----------------> network <--------------------
+*/
+.container4 { display:none; float:left; width:100%; height:200px; background-color:#fff; background-image:url(images/hgnetworkbox.png); }
+.container44 { margin: 0 auto; width:600px; height:200px; position:relative; }
+.container44 h3{ color:#fff; margin-top:20px; margin-bottom:0px; font-size:26px; text-align:center; text-shadow:#8bac0b 1px 1px 1px; }
+.singlebox { float:right; width:auto; height:auto; padding:10px; margin-right:25px; margin-top:20px; background-image:url(images/hgtable1.png); box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+/*
+---------------->Footer<--------------------
+*/
+.footer { float:left; width:100%; height:300px; position:relative; }
+.footer .pfeil { position:absolute; top:0px; left:508px; background-image:url(images/footerpfeil.png); width:27px; height:22px; z-index:99999; }
+.footer .social { position:absolute; top:80px; left:20px; width:170px; height:auto; }
+.footer .social a{ color:#333; }
+.footer .social li{ background-image:url(images/hgli.png); background-position:left center; background-repeat:no-repeat; padding:5px 5px 5px 20px; margin-bottom:10px; }
+.footer .info { position:absolute; width:300px; height:auto; top:85px; left:355px; text-align:center; text-shadow:1px 1px 1px #fff; color:#333; }
+.footer .info p.headline{ font-size:16px; }
+.footer .info p.call{ font-size:28px; }
+.footer .info p.small{ font-size:12px; }
+.footer .meta { position:absolute; top:80px; right:20px; width:170px; height:auto;}
+.footer .meta a{ color:#333; }
+.footer .meta li{ background-image:url(images/hgli.png); background-position:left center; background-repeat:no-repeat; padding:5px 5px 5px 20px; margin-bottom:10px; }
+
+#map {
+	width: 662px;
+	margin: 20px 0 0;
+	height: 260px;
+}

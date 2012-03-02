@@ -71,7 +71,7 @@ if ( ! class_exists( 'Wpmeetup' ) ) {
 		public function init_post_type() {
 			
 			$labels = array(
-				'name'				=> 'Meetup',
+				'name'				=> 'Meetups',
 				'new_item'			=> 'Neues Meetup',
 				'singular_name'		=> 'Meetup',
 				'view_item'			=> 'Zeige Meetups',
