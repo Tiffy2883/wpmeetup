@@ -1,0 +1,53 @@
+@CHARSET "UTF-8";
+
+#ui-datepicker-div {
+	
+}
+
+.inpsyde_galleries_pro_media_item {
+    display:block;
+    position: relative;
+    height:150px;
+    width:150px;
+    float:left;
+    margin: 0px 10px 10px 0px;
+    overflow: hidden;
+    padding: 3px;
+
+    border: 0px solid grey;
+
+    box-shadow: 0px 0px 2px 1px lightgrey; 
+}
+
+.inpsyde_galleries_pro_media_item:hover > .igp_edit_buttons { 
+    display: block;
+}
+
+
+.inpsyde_galleries_pro_media_item img.igp_thumbnail{
+    height: 150px;
+    width: 150px;
+}
+
+#inpsyde_galleries_pro_media_items{
+    margin-top: 30px;
+}
+
+.igp_edit_buttons {
+    display:none;
+    position: absolute;
+    top: 2px;
+    left: 5px;
+}
+
+.drag-drop #drag-drop-area {
+    width: 148px;
+    height: 148px;
+    float: left;
+    margin: 0px 10px 10px 0px;
+}
+
+.drag-drop .drag-drop-inside {
+    margin: 20px auto 0;
+    width: 150px;
+}
