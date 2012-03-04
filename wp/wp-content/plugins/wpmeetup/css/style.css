@@ -51,3 +51,43 @@
     margin: 20px auto 0;
     width: 150px;
 }
+
+#meetup_dates {
+	margin: 7px 0 15px 0;
+}
+
+.datetime {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	background-color: #E4E4E4;
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #EEE), color-stop(0.48, #E8E8E8), color-stop(0.5, #F0F0F0), color-stop(0.8, #F4F4F4));
+	background-image: -webkit-linear-gradient(center bottom, #EEE 0%, #E8E8E8 48%, #F0F0F0 50%, #F4F4F4 80%);
+	background-image: -moz-linear-gradient(center bottom, #EEE 0%, #E8E8E8 48%, #F0F0F0 50%, #F4F4F4 80%);
+	background-image: -o-linear-gradient(top, #EEE 0%, #E8E8E8 48%, #F0F0F0 50%, #F4F4F4 80%);
+	background-image: -ms-linear-gradient(top, #EEE 0%, #E8E8E8 48%, #F0F0F0 50%, #F4F4F4 80%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#f4f4f4',GradientType=0 );
+	background-image: linear-gradient(top, #EEE 0%, #E8E8E8 48%, #F0F0F0 50%, #F4F4F4 80%);
+	-webkit-box-shadow: 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
+	-moz-box-shadow: 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
+	box-shadow: 0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05);
+	color: #333;
+	border: 1px solid #AAA;
+	line-height: 13px;
+	padding: 5px 7px;
+	margin: 5px 0 5px 7px;
+	float: left;
+}
+
+.delete {
+	color: #f00;
+	cursor: pointer;
+}
+
+.delete:hover {
+	color: #fff;
+	background: #f00;
+}

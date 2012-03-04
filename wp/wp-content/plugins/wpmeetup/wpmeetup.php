@@ -10,11 +10,11 @@
  * Changelog
  * 
  * 0.2
- * - Better Metabox Structure
  * - TODO Improved Geodata-Loader
- * - TODO Gallery-Feature
- * - TODO Multiple Dates with datepicker
- * - TODO Some styling stuff
+ * - TODO Multiple Dates
+ * - Some styling stuff
+ * - Better Metabox Structure
+ * - Gallery-Feature
  * - Removed author
  *
  * 0.1
@@ -305,7 +305,7 @@ if ( ! class_exists( 'Wpmeetup' ) ) {
 			<input id="meetup[latitude]" name="meetup[latitude]" type="text" value="<?php echo $meetup_meta[ 'latitude' ]; ?>" tabindex="1" style="float: right;" />
 			<label for="meetup[latitude]" style="display: block; float: right; padding: 5px 7px 0;">Latitude</label>
 			<br class="clear" />
-			<p><em>Die Geodaten sollten automatisch geladen werden, wenn du auf den Button klickst. Sollte das nicht passieren, musst du dir die Geodaten <a href="">von dieser Seite</a> ziehen. Bitte speicher dein Meetup vor dieser Aktion.</em></p>
+			<p><em>Die Geodaten sollten automatisch geladen werden, wenn du auf den Button klickst und eine Adresse angegeben ist. Sollte das nicht passieren, musst du dir die Geodaten <a href="">von dieser Seite</a> ziehen. Bitte speicher dein Meetup vor dieser Aktion.</em></p>
 			<p><a href="#" id="locate_geodata" class="button-primary">Geodaten ermitteln</a></p>
 			<?php
 		}
@@ -324,6 +324,20 @@ if ( ! class_exists( 'Wpmeetup' ) ) {
 			wp_nonce_field( plugin_basename( __FILE__ ), 'wpmeetup_nonce' );
 			?>
 			<p><em>Du kannst jetzt mehrere Termine f&uuml;r dein Meetup angeben. Gib einfach das Datum und die Zeit in dem angegeben Format an und klick auf "hinzuf&uuml;gen". Alte oder fehlerhafte Daten kannst du &uuml;ber den L&ouml;schenbutton entfernen.</em></p>
+			
+			<label for="new_date" style="display: block; float: left; padding: 5px 7px 0;">Datum ( yyyy-mm-dd )</label>
+			<input type="text" name="new_date" id="new_date" style="float: left;" class="datepicker" />
+			
+			<label for="new_time" style="display: block; float: left; padding: 5px 7px 0;">Zeit ( hh:mm:ss )</label>
+			<input type="text" name="new_time" id="new_time" style="float: left;" />
+			
+			<a href="#" id="add_date" class="button-primary" style="float: left; margin: 1px 0 0 10px;">Datum hinzuf&uuml;gen</a>
+			<br class="clear" />
+			
+			<div id="meetup_dates">
+				
+				<br class="clear" />
+			</div>
 			<?php
 		}
 		
@@ -369,11 +383,7 @@ if ( ! class_exists( 'Wpmeetup' ) ) {
 			if ( ! wp_verify_nonce( $_POST[ 'wpmeetup_nonce' ], plugin_basename( __FILE__ ) ) )
 				return;
 			
-			// Dateformat
-			$date = explode( '.', $_POST[ 'meetup' ][ 'date' ] );
-			$date = $date[ 2 ] . '-' . $date[ 1 ] . '-' . $date[ 0 ];
-			
-			update_post_meta( $post_id, 'meetup_date', $date );
+			update_post_meta( $post_id, 'meetup_date', $_POST[ 'meetup' ][ 'dates' ] );
 			update_post_meta( $post_id, 'meetup_town', $_POST[ 'meetup' ][ 'town' ] );
 			update_post_meta( $post_id, 'meetup_street', $_POST[ 'meetup' ][ 'street' ] );
 			update_post_meta( $post_id, 'meetup_number', $_POST[ 'meetup' ][ 'number' ] );
@@ -543,8 +553,8 @@ if ( ! class_exists( 'Wpmeetup' ) ) {
 	
 			$post_id = ( FALSE == $gallery_id ) ? get_the_ID() : intval( $gallery_id );
 	
-			if ( ISSET( $attachment_id ) )
-			$attachment_id = intval( $attachment_id );
+			if ( isset( $attachment_id ) )
+				$attachment_id = intval( $attachment_id );
 	
 			// Get the gallery items order
 			$meta = get_post_meta( $post_id, 'items_order', TRUE );
@@ -552,40 +562,40 @@ if ( ! class_exists( 'Wpmeetup' ) ) {
 			// Get all attachments related to this gallery
 			$attachments = array( );
 			if ( $post_id ) {
-			$post = get_post( $post_id );
-			if ( $post && $post->post_type == 'attachment' )
-				$attachments = array( $post->ID => $post );
-			else
-				$attachments = get_children( array( 'post_parent' => $post_id, 'post_type' => 'attachment', 'orderby' => 'menu_order ASC, ID', 'order' => 'DESC' ) );
+				$post = get_post( $post_id );
+				if ( $post && 'attachment' == $post->post_type )
+					$attachments = array( $post->ID => $post );
+				else
+					$attachments = get_children( array( 'post_parent' => $post_id, 'post_type' => 'attachment', 'orderby' => 'menu_order ASC, ID', 'order' => 'DESC' ) );
 			} else {
-			if ( is_array( $GLOBALS[ 'wp_the_query' ]->posts ) )
-				foreach ( $GLOBALS[ 'wp_the_query' ]->posts as $attachment )
-				$attachments[ $attachment->ID ] = $attachment;
+				if ( is_array( $GLOBALS[ 'wp_the_query' ]->posts ) )
+					foreach ( $GLOBALS[ 'wp_the_query' ]->posts as $attachment )
+						$attachments[ $attachment->ID ] = $attachment;
 			}
 	
 			// Sort attachments according to saved order
 			if ( $meta ) {
-			$attachments_ordered = array( );
-			foreach ( $meta[ 'igp' ] AS $item_id ) {
-				if ( array_key_exists( $item_id, $attachments ) ) {
-				$attachments_ordered[ $item_id ] = $attachments[ $item_id ];
+				$attachments_ordered = array( );
+			
+				foreach ( $meta[ 'igp' ] AS $item_id ) {
+					if ( array_key_exists( $item_id, $attachments ) )
+						$attachments_ordered[ $item_id ] = $attachments[ $item_id ];
 				}
-			}
-			$attachments = $attachments_ordered;
+				$attachments = $attachments_ordered;
 			}
 	
 			// Start building output
 			$output = "<ul id='inpsyde_galleries_pro_media_items'>";
 			foreach ( ( array ) $attachments as $id => $attachment ) {
-			if ( $attachment->post_status == 'trash' )
-				continue;
-	
-			if ( ( $id = intval( $id ) ) && $thumb_url = wp_get_attachment_image_src( $id, 'thumbnail', true ) )
-				$thumb_url = $thumb_url[ 0 ];
-			else
-				$thumb_url = false;
-	
-			$output.= $this->get_gallery_item( $post_id, $id );
+				if ( 'trash' == $attachment->post_status )
+					continue;
+		
+				if ( ( $id = intval( $id ) ) && $thumb_url = wp_get_attachment_image_src( $id, 'thumbnail', true ) )
+					$thumb_url = $thumb_url[ 0 ];
+				else
+					$thumb_url = false;
+		
+				$output.= $this->get_gallery_item( $post_id, $id );
 			}
 	
 			$output.= "</ul><div style='clear:both'></div>";
@@ -593,17 +603,18 @@ if ( ! class_exists( 'Wpmeetup' ) ) {
 			echo $output;
 	
 			// Is this an ajax call?
-			if ( ISSET( $_POST[ 'action' ] ) && 'refresh_gallery' == $_POST[ 'action' ] )
-			exit;
+			if ( isset( $_POST[ 'action' ] ) && 'refresh_gallery' == $_POST[ 'action' ] )
+				exit;
 		}
 		
 		/**
 		 * Do the file upload
 		 * 
-		 * @since 0.2
-		 * @return void;
+		 * @access	public
+		 * @since	0.2
+		 * @return	void;
 		 */
-		function handle_file_upload() {
+		public function handle_file_upload() {
 	
 			check_ajax_referer( 'photo-upload' );
 	
@@ -616,18 +627,18 @@ if ( ! class_exists( 'Wpmeetup' ) ) {
 			$allowed_types = array( 'jpg', 'jpeg', 'gif', 'png', 'JPG', 'JPEG', 'GIF', 'PNG' );
 	
 			// If this is not an image, we don't want it in out gallery ;
-			if ( !in_array( $wp_filetype[ 'ext' ], $allowed_types ) )
-			return;
+			if ( ! in_array( $wp_filetype[ 'ext' ], $allowed_types ) )
+				return;
 	
 			$status = wp_handle_upload( $file, array( 'test_form' => true, 'action' => 'photo_gallery_upload' ) );
 	
 			//Adds file as attachment to WordPress
 			$attach_id = wp_insert_attachment( array(
-			'post_mime_type' => $status[ 'type' ],
-			'post_title' => preg_replace( '/\.[^.]+$/', '', basename( $file[ 'name' ] ) ),
-			'post_content' => '',
-			'post_status' => 'inherit'
-				), $status[ 'file' ], $post_id );
+				'post_mime_type'	=> $status[ 'type' ],
+				'post_title'		=> preg_replace( '/\.[^.]+$/', '', basename( $file[ 'name' ] ) ),
+				'post_content'		=> '',
+				'post_status'		=> 'inherit'
+			), $status[ 'file' ], $post_id );
 	
 			$attach_data = wp_generate_attachment_metadata( $attach_id, $status[ 'file' ] );
 			wp_update_attachment_metadata( $attach_id, $attach_data );
@@ -641,14 +652,13 @@ if ( ! class_exists( 'Wpmeetup' ) ) {
 		/**
 		 * Output an item in the gallery
 		 * 
-		 * @access private
-		 * @param string $post_id | the gallery ID
-		 * @param string $attach_id | ID of the attachment
-		 * @since 0.2
-		 * @return void
+		 * @access	private
+		 * @since	0.2
+		 * @param	string $post_id | the gallery ID
+		 * @param	string $attach_id | ID of the attachment
+		 * @return	void
 		 */
 		private function gallery_item( $post_id, $attach_id ) {
-		    
 	        echo $this->get_gallery_item( $post_id, $attach_id );
    		}
 	
@@ -702,83 +712,85 @@ if ( ! class_exists( 'Wpmeetup' ) ) {
 	
 			$errors = null;
 	
-			if ( ISSET( $_POST[ 'send' ] ) ) {
-			$keys = array_keys( $_POST[ 'send' ] );
-			$send_id = intval( array_shift( $keys ) );
+			if ( isset( $_POST[ 'send' ] ) ) {
+				$keys = array_keys( $_POST[ 'send' ] );
+				$send_id = intval( array_shift( $keys ) );
 			}
 	
-			if ( !empty( $_POST[ 'attachments' ] ) )
-			foreach ( $_POST[ 'attachments' ] as $attachment_id => $attachment ) {
-				$post = $_post = get_post( $attachment_id, ARRAY_A );
-				$post_type_object = get_post_type_object( $post[ 'post_type' ] );
-	
-				if ( !current_user_can( $post_type_object->cap->edit_post, $attachment_id ) )
-				continue;
-	
-				if ( ISSET( $attachment[ 'post_content' ] ) )
-				$post[ 'post_content' ] = $attachment[ 'post_content' ];
-				if ( ISSET( $attachment[ 'post_title' ] ) )
-				$post[ 'post_title' ] = $attachment[ 'post_title' ];
-				if ( ISSET( $attachment[ 'post_excerpt' ] ) )
-				$post[ 'post_excerpt' ] = $attachment[ 'post_excerpt' ];
-				if ( ISSET( $attachment[ 'menu_order' ] ) )
-				$post[ 'menu_order' ] = $attachment[ 'menu_order' ];
-	
-				if ( ISSET( $send_id ) && $attachment_id == $send_id ) {
-				if ( ISSET( $attachment[ 'post_parent' ] ) )
-					$post[ 'post_parent' ] = $attachment[ 'post_parent' ];
-				}
-	
-				$post = apply_filters( 'attachment_fields_to_save', $post, $attachment );
-	
-				if ( ISSET( $attachment[ 'image_alt' ] ) ) {
-				$image_alt = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
-				if ( $image_alt != stripslashes( $attachment[ 'image_alt' ] ) ) {
-					$image_alt = wp_strip_all_tags( stripslashes( $attachment[ 'image_alt' ] ), true );
-					// update_meta expects slashed
-					update_post_meta( $attachment_id, '_wp_attachment_image_alt', addslashes( $image_alt ) );
-				}
-				}
-	
-				if ( ISSET( $post[ 'errors' ] ) ) {
-				$errors[ $attachment_id ] = $post[ 'errors' ];
-				unset( $post[ 'errors' ] );
-				}
-	
-				if ( $post != $_post )
-				wp_update_post( $post );
-	
-				foreach ( get_attachment_taxonomies( $post ) as $t ) {
-				if ( ISSET( $attachment[ $t ] ) )
-					wp_set_object_terms( $attachment_id, array_map( 'trim', preg_split( '/,+/', $attachment[ $t ] ) ), $t, false );
+			if ( ! empty( $_POST[ 'attachments' ] ) ) {
+				foreach ( $_POST[ 'attachments' ] as $attachment_id => $attachment ) {
+					$post = $_post = get_post( $attachment_id, ARRAY_A );
+					$post_type_object = get_post_type_object( $post[ 'post_type' ] );
+		
+					if ( ! current_user_can( $post_type_object->cap->edit_post, $attachment_id ) )
+						continue;
+		
+					if ( isset( $attachment[ 'post_content' ] ) )
+						$post[ 'post_content' ] = $attachment[ 'post_content' ];
+					if ( isset( $attachment[ 'post_title' ] ) )
+						$post[ 'post_title' ] = $attachment[ 'post_title' ];
+					if ( isset( $attachment[ 'post_excerpt' ] ) )
+						$post[ 'post_excerpt' ] = $attachment[ 'post_excerpt' ];
+					if ( isset( $attachment[ 'menu_order' ] ) )
+						$post[ 'menu_order' ] = $attachment[ 'menu_order' ];
+		
+					if ( isset( $send_id ) && $attachment_id == $send_id ) {
+						if ( isset( $attachment[ 'post_parent' ] ) )
+							$post[ 'post_parent' ] = $attachment[ 'post_parent' ];
+					}
+		
+					$post = apply_filters( 'attachment_fields_to_save', $post, $attachment );
+		
+					if ( isset( $attachment[ 'image_alt' ] ) ) {
+						$image_alt = get_post_meta( $attachment_id, '_wp_attachment_image_alt', TRUE );
+						if ( $image_alt != stripslashes( $attachment[ 'image_alt' ] ) ) {
+							$image_alt = wp_strip_all_tags( stripslashes( $attachment[ 'image_alt' ] ), TRUE );
+							// update_meta expects slashed
+							update_post_meta( $attachment_id, '_wp_attachment_image_alt', addslashes( $image_alt ) );
+						}
+					}
+		
+					if ( isset( $post[ 'errors' ] ) ) {
+						$errors[ $attachment_id ] = $post[ 'errors' ];
+						unset( $post[ 'errors' ] );
+					}
+		
+					if ( $post != $_post )
+						wp_update_post( $post );
+		
+					foreach ( get_attachment_taxonomies( $post ) as $t ) {
+						if ( isset( $attachment[ $t ] ) )
+							wp_set_object_terms( $attachment_id, array_map( 'trim', preg_split( '/,+/', $attachment[ $t ] ) ), $t, FALSE );
+					}
 				}
 			}
 	
-			if ( ISSET( $_POST[ 'insert-gallery' ] ) || ISSET( $_POST[ 'update-gallery' ] ) ) {
-			?>
-			<script type="text/javascript">
-				/* <![CDATA[ */
-				var win = window.dialogArguments || opener || parent || top;
-				win.tb_remove();
-				/* ]]> */
-			</script>
-			<?php
-			exit;
+			if ( isset( $_POST[ 'insert-gallery' ] ) || isset( $_POST[ 'update-gallery' ] ) ) {
+				?>
+				<script type="text/javascript">
+					/* <![CDATA[ */
+					var win = window.dialogArguments || opener || parent || top;
+					win.tb_remove();
+					/* ]]> */
+				</script>
+				<?php
+				exit;
 			}
 	
-			if ( ISSET( $send_id ) ) {
-			$attachment = stripslashes_deep( $_POST[ 'attachments' ][ $send_id ] );
+			if ( isset( $send_id ) ) {
+				$attachment = stripslashes_deep( $_POST[ 'attachments' ][ $send_id ] );
 	
-			$html = $attachment[ 'post_title' ];
-			if ( !empty( $attachment[ 'url' ] ) ) {
-				$rel = '';
-				if ( strpos( $attachment[ 'url' ], 'attachment_id' ) || get_attachment_link( $send_id ) == $attachment[ 'url' ] )
-				$rel = " rel='attachment wp-att-" . esc_attr( $send_id ) . "'";
-				$html = "<a href='{$attachment[ 'url' ]}'$rel>$html</a>";
-			}
-	
-			$html = apply_filters( 'media_send_to_editor', $html, $send_id, $attachment );
-			return media_send_to_editor( $html );
+				$html = $attachment[ 'post_title' ];
+				if ( ! empty( $attachment[ 'url' ] ) ) {
+					$rel = '';
+					if ( strpos( $attachment[ 'url' ], 'attachment_id' ) || get_attachment_link( $send_id ) == $attachment[ 'url' ] )
+						$rel = " rel='attachment wp-att-" . esc_attr( $send_id ) . "'";
+					
+					$html = "<a href='{$attachment[ 'url' ]}'$rel>$html</a>";
+				}
+		
+				$html = apply_filters( 'media_send_to_editor', $html, $send_id, $attachment );
+				return media_send_to_editor( $html );
 			}
 	
 			return $errors;

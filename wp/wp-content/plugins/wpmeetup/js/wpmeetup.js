@@ -30,7 +30,24 @@ jQuery.noConflict();
 		 */
 		init : function() {
 			inpsyde_galleries_pro.init();
-			$( '#datepicker' ).datepicker();
+			wpmeetup.add_date();
+		},
+		
+		add_date : function() {
+			if ( $( '#add_date' ) ) {
+				$( '#add_date' ).live( 'click', function() {
+					
+					$( '#meetup_dates' ).prepend(
+						'<span class="datetime">' + $( '#new_date' ).val() + ' ' + $( '#new_time' ).val() + '<input type="hidden" name="meetup[dates][]" value="' + $( '#new_date' ).val() + ' ' + $( '#new_time' ).val() + '" /> <strong class="delete">X</strong></span>'
+					);
+					
+					return false;
+				} );
+				
+				$( '.delete' ).live( 'click', function() {
+					$( this ).parent().remove();
+				} );
+			}
 		},
 	};
 	
